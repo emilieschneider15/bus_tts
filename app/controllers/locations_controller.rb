@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
+  include LocationsHelper
   before_action :set_location, only: [:show, :edit, :update, :destroy]
-
   # GET /locations
   # GET /locations.json
   def index
@@ -10,6 +10,10 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    source_url = "http://developer.itsmarta.com/BRDRestService/RestBusRealTimeService/GetAllBus"
+
+    @buses = fetch_buses_from_api(source_url)
+
   end
 
   # GET /locations/new
